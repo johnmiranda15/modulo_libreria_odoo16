@@ -28,6 +28,7 @@ class Libros(models.Model):
 
 class CategoriaLibro(models.Model):
     _name ='categoria.libro'
+    _description = 'categoria de cada libro'
     
     name = fields.Char(string="Nombre de la categoría")
   
