@@ -1,0 +1,119 @@
+<?xml version='1.0'?>
+<odoo>
+    <!--Vista del formulario para libros-->
+    <record id="libros_form_view" model="ir.ui.view">
+        <field name="name">libro.form.view</field>
+        <field name="model">libros</field>
+        <field name="arch" type="xml">
+            <form string="Libro">
+                <header>
+                    <button name="btn_publicar" string="Publicar" type="object" states="draft" class="oe_highligth"/>
+                    <button name="btn_borrador" string="Borrador" type="object" states="published" />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <group><!--Bootstrap
+                    12 columnas-->
+                        <group><!--6
+                        columnas-->
+                            <field name="image" widget="image" class="oe_avatar" style="position:relative;"/>
+                            <field name="name" />
+                            <field name="editorial" />
+                            <field name="isbn" />
+                            <field name="autor_id" />
+                            <field name="lastname_autor" />
+                            <field name="categoria_id" />
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!--Vista
+    de arbol (Tree) para libros-->
+    <record id="libros_tree_view" model="ir.ui.view">
+        <field name="name">libro.tree.view</field>
+        <field name="model">libros</field>
+        <field name="arch" type="xml">
+            <tree string="Libros" decoration-success="state == 'published'" decoration-info="state == 'draft'">
+                <field name="name" optional="show"/>
+                <field name="editorial" optional="show"/>
+                <field name="isbn" optional="show"/>
+                <field name="autor_id" optional="show"/>
+                <field name="categoria_id" optional="show"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-primary="state == 'sent'"/>
+            </tree>
+        </field>
+    </record>
+    <!--Vista
+    Kanban-->
+    <record id="libros_kanban_view" model="ir.ui.view">
+        <field name="name">libro.kanban.view</field>
+        <field name="model">libros</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="id"></field>
+                <field name="name"></field>
+                <field name="editorial"></field>
+                <field name="isbn"></field>
+                <field name="autor_id"></field>
+                <template>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <img
+                                    t-att-src="kanban_image('libros', 'image', record.id.raw_value)"
+                                    alt="Image" />
+                            </div>
+                            <div class="oe_kanban_details">
+                                <div class="oe_kanban_record_top">
+                                    <div class="o_kanban_record_headings">
+                                        <strong class="o_kanban_record_title oe_partner_heading">
+                                            <field name="name" />
+                                            <br/>
+                                            <field name="editorial" />
+                                            <br/>
+                                            <field name="isbn" />
+                                            <br/>
+                                            <field name="autor_id" />
+                                        </strong>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </t>
+                </template>
+            </kanban>
+        </field>
+    </record>
+    <!--Vista de Búsqueda-->
+    <record id="libros_search_view" model="ir.ui.view">
+        <field name="name">libros.search.view</field>
+        <field name="model">libros</field>
+        <field name="arch" type="xml">
+            <search>
+                 <!--Busqueda Rápida-->
+                <field name="name" string="Nombre del Libro" />
+                <field name="autor_id" string="Nombre del Autor" />
+                <!--Filtro Rápido-->
+                <filter name="categoria_cientifico" string="Ciencia" domain="[('categoria_id','=','Ciencia')]" />
+                <filter name="categoria_programacion" string="Programacion" domain="[('categoria_id','=','Programacion')]" />
+                <!--Agrupación Rápida-->
+                <group expand="0" string="Agrupar Por" colspan="12" col="10">
+                    <filter name="categoria" string="Categoria" context="{'group_by':'categoria_id'}"/>
+                    <filter name="autor" string="Autor" context="{'group_by':'autor_id'}"/>
+                </group>
+                <searchpanel>
+                    <field name="categoria_id" string="Categorias" icon="fa-users"/>
+                    <field name="autor_id" string="Autores" />
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+</odoo>
