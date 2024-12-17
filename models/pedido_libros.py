@@ -1,10 +1,10 @@
-"""libros_libreria"""
+"""pedido_libros"""
 
 from odoo  import models, fields
 
-class LibrosLibreiaIglesia(models.Model):
-    """Clase Libros de la Libreria de la Iglesia"""
-    _name = 'libros.libreria'
+class PedidoLibros(models.Model):
+    """Clase Pedido de Libros"""
+    _name = 'pedido.libros'
     _description = "Modelo de Libros para la librería"
     _rec_name = 'titulo'
 
@@ -13,7 +13,7 @@ class LibrosLibreiaIglesia(models.Model):
     serie = fields.Char(string="Serie/Editorial")
     fecha_publicacion = fields.Date(string="Fecha de Publicación")
     isbn = fields.Char(string="ISBN")
-    pagina = fields.Char(string="Páginas")
+    paginas = fields.Char(string="Páginas")
     tamano = fields.Char(string="Tamaño")
     precio = fields.Float(string="Precio")
     descuento = fields.Float(string="Descuento")
