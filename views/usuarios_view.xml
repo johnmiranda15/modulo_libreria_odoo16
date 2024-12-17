@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--Vista Form-->
+    <record id="usuarios_view_form" model="ir.ui.view">
+        <field name="name">usuarios.view.form</field>
+        <field name="model">usuarios.libros</field>
+        <field name="arch" type="xml">
+            <form string="Usuarios de Libros">
+                <sheet>
+                    <group>
+                        <field name="nombre_hermano"/>
+                        <field name="celular"/>
+                        <field name="direccion"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--Vista Tree-->
+    <record id="usuarios_view_tree" model="ir.ui.view">
+        <field name="name">usuarios.view.tree</field>
+        <field name="model">usuarios.libros</field>
+        <field name="arch" type="xml">
+            <tree string="Usuarios de Libros">
+                <field name="nombre_hermano"/>
+                <field name="celular"/>
+                <field name="direccion"/>
+            </tree>
+        </field>
+    </record>
+    <!--Accion-->
+    <record id="usuarios_book_action" model="ir.actions.act_window">
+        <field name="name">Usuarios Libros</field>
+        <field name="res_model">usuarios.libros</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!--Menu-->
+    <menuitem name="Hermanos" id="hermanos_menu" parent="libreria_menu" sequence="50" action="usuarios_book_action"/>
+</odoo>
