@@ -1,4 +1,14 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_libros_user,Acceso a libros,model_libros,libreria_group_user,1,1,1,1
-access_autor_user,Acceso a autores,model_autor,libreria_group_user,1,1,1,1
-access_categoria_user,Acceso a Categorias,model_categoria_libro,libreria_group_user,1,1,1,1
+access_importar_documento_user,Acceso a Importar Documento User,model_importar_documento,libreria_group_user,1,1,1,0
+access_libros_biblioteca_user,Acceso a libros User,model_libros_biblioteca,libreria_group_user,1,1,1,0
+access_pedido_libros_user,Acceso a Pedido Libros User,model_pedido_libros,libreria_group_user,1,1,1,0
+access_categoria_user,Acceso a Categorias User,model_categoria_libro,libreria_group_user,1,1,1,0
+access_usuario_user,Acceso a Usuarios User,model_usuarios_libros,libreria_group_user,1,1,1,0
+access_autor_user,Acceso a Autores User,model_autor,libreria_group_user,1,1,1,0
+access_importar_documento_admin,Acceso a Importar Documento Admin,model_importar_documento,libreria_group_admin,1,1,1,1
+access_libros_biblioteca_admin,Acceso a libros Admin,model_libros_biblioteca,libreria_group_admin,1,1,1,1
+access_pedido_libros_admin,Acceso a Pedido Libros Admin,model_pedido_libros,libreria_group_admin,1,1,1,1
+access_categoria_admin,Acceso a Categorias Admin,model_categoria_libro,libreria_group_admin,1,1,1,1
+access_usuario_admin,Acceso a Usuarios Admin,model_usuarios_libros,libreria_group_admin,1,1,1,0
+access_autor_admin,Acceso a Autores Admin,model_autor,libreria_group_admin,1,1,1,0
+
