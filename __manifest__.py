@@ -15,7 +15,7 @@
         'views/usuarios_view.xml',
         'security/libreria_security.xml',
         'security/ir.model.access.csv',
-        #'report/libros_report.xml'
+        'report/libros_report.xml'
     ],
     'images': ['static/description/icon.png']
 }
