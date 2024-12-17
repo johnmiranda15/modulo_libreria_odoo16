@@ -3,19 +3,17 @@
     <!--Vista del formulario para libros-->
     <record id="libros_form_view" model="ir.ui.view">
         <field name="name">libro.form.view</field>
-        <field name="model">libros</field>
+        <field name="model">libros.biblioteca</field>
         <field name="arch" type="xml">
             <form string="Libro">
                 <header>
-                    <button name="btn_publicar" string="Publicar" type="object" states="draft" class="oe_highligth"/>
-                    <button name="btn_borrador" string="Borrador" type="object" states="published" />
+                    <!--<button name="btn_reservado" string="Reservado" type="object" states="available" class="oe_highligth"/>
+                    <button name="btn_prestado" string="Prestado" type="object" states="reserved" />-->
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
-                    <group><!--Bootstrap
-                    12 columnas-->
-                        <group><!--6
-                        columnas-->
+                    <group><!--Bootstrap 12 columnas-->
+                        <group><!--6 columnas-->
                             <field name="image" widget="image" class="oe_avatar" style="position:relative;"/>
                             <field name="name" />
                             <field name="editorial" />
@@ -34,13 +32,12 @@
             </form>
         </field>
     </record>
-    <!--Vista
-    de arbol (Tree) para libros-->
+    <!--Vista de arbol (Tree) para libros-->
     <record id="libros_tree_view" model="ir.ui.view">
         <field name="name">libro.tree.view</field>
-        <field name="model">libros</field>
+        <field name="model">libros.biblioteca</field>
         <field name="arch" type="xml">
-            <tree string="Libros" decoration-success="state == 'published'" decoration-info="state == 'draft'">
+            <tree string="Libros" decoration-success="state == 'archived'" decoration-info="state == 'available'">
                 <field name="name" optional="show"/>
                 <field name="editorial" optional="show"/>
                 <field name="isbn" optional="show"/>
@@ -50,11 +47,10 @@
             </tree>
         </field>
     </record>
-    <!--Vista
-    Kanban-->
+    <!--Vista Kanban-->
     <record id="libros_kanban_view" model="ir.ui.view">
         <field name="name">libro.kanban.view</field>
-        <field name="model">libros</field>
+        <field name="model">libros.biblioteca</field>
         <field name="arch" type="xml">
             <kanban>
                 <field name="id"></field>
@@ -84,7 +80,6 @@
                                         </strong>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </t>
@@ -95,15 +90,15 @@
     <!--Vista de Búsqueda-->
     <record id="libros_search_view" model="ir.ui.view">
         <field name="name">libros.search.view</field>
-        <field name="model">libros</field>
+        <field name="model">libros.biblioteca</field>
         <field name="arch" type="xml">
             <search>
                  <!--Busqueda Rápida-->
                 <field name="name" string="Nombre del Libro" />
                 <field name="autor_id" string="Nombre del Autor" />
                 <!--Filtro Rápido-->
-                <filter name="categoria_cientifico" string="Ciencia" domain="[('categoria_id','=','Ciencia')]" />
-                <filter name="categoria_programacion" string="Programacion" domain="[('categoria_id','=','Programacion')]" />
+                <filter name="categoria_evangelismo" string="Evangelismo" domain="[('categoria_id','=','Evangelismo')]" />
+                <filter name="categoria_pactual" string="Pactual" domain="[('categoria_id','=','Pactual')]" />
                 <!--Agrupación Rápida-->
                 <group expand="0" string="Agrupar Por" colspan="12" col="10">
                     <filter name="categoria" string="Categoria" context="{'group_by':'categoria_id'}"/>
@@ -116,4 +111,13 @@
             </search>
         </field>
     </record>
+    <!--Accion-->
+    <record id="libros_action" model="ir.actions.act_window">
+        <field name="name">Libros</field>
+        <field name="res_model">libros.biblioteca</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+    <!--Menus-->
+    <menuitem name="Mi Libreria" id="libreria_menu" web_icon="modulo_libreria,static/description/odoo_book.png" sequence="10"/>
+    <menuitem name="Libros" id="libros_menu" parent="libreria_menu" action="libros_action"/>
 </odoo>

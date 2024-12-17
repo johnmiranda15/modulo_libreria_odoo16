@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Vista Tree -->
+    <record id="pedido_libros_tree_view" model="ir.ui.view">
+        <field name="name">pedido.libros.tree.view</field>
+        <field name="model">pedido.libros</field>
+        <field name="arch" type="xml">
+            <tree string="Libros Pedido">
+                <field name="titulo"/>
+                <field name="autor"/>
+                <field name="serie"/>
+                <field name="fecha_publicacion"/>
+                <field name="isbn"/>
+                <field name="pagina"/>
+                <field name="tamano"/>
+                <field name="precio"/>
+                <field name="descuento"/>
+                <field name="link"/>
+                <field name="tipo_tapa"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Acción -->
+    <record id="pedido_gestion_action" model="ir.actions.act_window">
+        <field name="name">Pedido</field>
+        <field name="res_model">pedido.libros</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <!-- Menú -->
+    <menuitem name="Pedido de Libros" id="pedido_menu"  web_icon="modulo_libreria,static/description/icon.png" parent="libreria_menu" sequence="30"  action="pedido_gestion_action"/>
+</odoo>

@@ -13,18 +13,28 @@ class Libros(models.Model):
     lastname_autor = fields.Char(related="autor_id.last_name", string="Apellido del Autor") 
     image = fields.Binary(string="Image")
     categoria_id = fields.Many2one(comodel_name='categoria.libro')
-    state = fields.Selection([('draft','borrador'),('published','publicado')], default='draft')
+    state = fields.Selection([
+        ('available', 'Disponible'),
+        ('reserved', 'Reservado'),
+        ('loaned', 'Prestado'),
+        ('overdue', 'Retrasado'),
+        ('returned', 'Retornado'),
+        ('lost', 'Perdido'),
+        ('damaged', 'Dañado'),
+        ('maintenance', 'En mantenimiento'),
+        ('archived', 'Archivado'),
+    ], string='Estado', default='available', required=True)
     
     _sql_constraints = [("name_uniq", "unique (name)", "El nombre del libro ya existe")]
     #nombre del sql constraints
     #unique () los valores que no queremos que se dupliquen
     #mensaje de error
         
-    def btn_publicar(self):
-        self.write({'state': 'published'}) 
+    def btn_reservado(self):
+        self.write({'state': 'reserved'})
     
-    def btn_borrador(self):
-        self.write({'state': 'draft'})
+    def btn_prestado(self):
+        self.write({'state': 'loaned'})
 
 class CategoriaLibro(models.Model):
     _name ='categoria.libro'

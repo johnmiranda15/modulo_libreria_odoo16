@@ -1,0 +1,12 @@
+# Ignorar directorios de caché de Python
+__pycache__/
+models/__pycache__/
+
+# Ignorar archivos compilados de Python
+*.pyc
+
+# Ignorar archivos README
+README.md
+
+# Ignorar la wiki
+wiki/
