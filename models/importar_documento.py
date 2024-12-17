@@ -88,8 +88,8 @@ class ImportarDocumento(models.TransientModel):
                 'isbn': str(importacion.get('ISBN')) or '',
                 'paginas': str(importacion.get('Paginas')) or '',
                 'tamano': str(importacion.get('Tamaño')) or '',
-                'precio': float(importacion.get('Precio Lista (dolares)', 0.0)),
-                'descuento': float(importacion.get('Descuento', 0.0)),
+                'precio': float(importacion.get('Precio Lista (dolares)', 0.0) or 0.0),
+                'descuento': float(importacion.get('Descuento', 0.0) or 0.0),
                 'link': str(importacion.get('Web page link')) or '',
                 'tipo_tapa': str(importacion.get('DISPONIBLE')) or '',
             }).id)
