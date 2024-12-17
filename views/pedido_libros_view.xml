@@ -11,7 +11,7 @@
                 <field name="serie"/>
                 <field name="fecha_publicacion"/>
                 <field name="isbn"/>
-                <field name="pagina"/>
+                <field name="paginas"/>
                 <field name="tamano"/>
                 <field name="precio"/>
                 <field name="descuento"/>
@@ -29,5 +29,5 @@
     </record>
 
     <!-- Menú -->
-    <menuitem name="Pedido de Libros" id="pedido_menu"  web_icon="modulo_libreria,static/description/icon.png" parent="libreria_menu" sequence="30"  action="pedido_gestion_action"/>
+    <menuitem name="Pedido de Libros" id="pedido_menu" parent="libreria_menu" sequence="30"  action="pedido_gestion_action"/>
 </odoo>
