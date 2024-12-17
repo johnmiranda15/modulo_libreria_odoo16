@@ -14,13 +14,19 @@
                 <sheet>
                     <group><!--Bootstrap 12 columnas-->
                         <group><!--6 columnas-->
-                            <field name="image" widget="image" class="oe_avatar" style="position:relative;"/>
                             <field name="name" />
                             <field name="editorial" />
                             <field name="isbn" />
                             <field name="autor_id" />
                             <field name="lastname_autor" />
                             <field name="categoria_id" />
+                            <field name="image" widget="image" class="oe_avatar" style="position:relative;"/>
+                        </group>
+                        <group>
+                            <field name="hermano" />
+                            <field name="fecha_entrega"/>
+                            <field name="fecha_recibido"/>
+                            <field name="dias_transcurridos" readonly="1"/>
                         </group>
                     </group>
                 </sheet>
@@ -42,7 +48,9 @@
                 <field name="editorial" optional="show"/>
                 <field name="isbn" optional="show"/>
                 <field name="autor_id" optional="show"/>
+                <field name="lastname_autor"/>
                 <field name="categoria_id" optional="show"/>
+                <field name="hermano" />
                 <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-primary="state == 'sent'"/>
             </tree>
         </field>
@@ -118,6 +126,5 @@
         <field name="view_mode">tree,form,kanban</field>
     </record>
     <!--Menus-->
-    <menuitem name="Mi Libreria" id="libreria_menu" web_icon="modulo_libreria,static/description/odoo_book.png" sequence="10"/>
-    <menuitem name="Libros" id="libros_menu" parent="libreria_menu" action="libros_action"/>
+    <menuitem name="Mi Biblioteca" id="libreria_menu" web_icon="modulo_libreria,static/description/book.png" sequence="10" action="libros_action"/>
 </odoo>
