@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="autores_view_form" model="ir.ui.view">
+        <field name="name">autores.view.form</field>
+        <field name="model">autor</field>
+        <field name="arch" type="xml">
+            <form string="Formulario Autores">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="last_name" />
+                        <field name="fecha_nacimiento" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--Vista Tree-->
+    <record id="autores_view_tree" model="ir.ui.view">
+        <field name="name">autores.view.tree</field>
+        <field name="model">autor</field>
+        <field name="arch" type="xml">
+            <tree string="Autores">
+                <field name="name" />
+                <field name="last_name"/>
+                <field name="fecha_nacimiento" />
+            </tree>
+        </field>
+    </record>
+    <!--Accion-->
+    <record id="autores_action" model="ir.actions.act_window">
+        <field name="name">Autores</field>
+        <field name="res_model">autor</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!--Menu-->
+    <menuitem name="Autores" id="autores_menu" parent="libreria_menu" sequence="20" action="autores_action"/>
+</odoo>
