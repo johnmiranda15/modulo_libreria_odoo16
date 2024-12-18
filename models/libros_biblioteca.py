@@ -58,5 +58,3 @@ class CategoriaLibro(models.Model):
     _description = 'categoria de cada libro'
     
     name = fields.Char(string="Nombre de la categoría")
-  
-    
