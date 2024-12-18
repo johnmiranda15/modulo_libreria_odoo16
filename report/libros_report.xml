@@ -1,42 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <data>
-        <record id="action_report_libros" model="ir.actions.report">
-            <field name="name">Reporte de Libros</field>
-            <field name="model">libros.biblioteca</field>
-            <field name="report_type">qweb-pdf</field>
-            <field name="report_name">modulo_libreria.report_libros_biblioteca</field>
-            <field name="binding_model_id" ref="model_libros_biblioteca"/>
-        </record>
+    <!-- Acción del reporte -->
+    <record id="action_report_libros" model="ir.actions.report">
+        <field name="name">Reporte de Libros</field>
+        <field name="model">libros.biblioteca</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">modulo_libreria.report_libros_biblioteca</field>
+        <field name="report_file">modulo_libreria.report_libros_biblioteca</field>
+        <field name="binding_model_id" ref="model_libros_biblioteca"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Reporte de Libro: %s' % (object.name)</field>
+    </record>
 
-        <template id="report_libros_biblioteca">
-            <t t-call="web.html_container">
+    <!-- Plantilla del reporte -->
+    <template id="report_libros_biblioteca">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
                     <div class="page">
-                        <h2 style="text-align: center;">Reporte de Libros</h2>
-                        <table class="table table-sm table-bordered" style="width: 100%; margin-top: 20px;">
+                        <h3 style="text-align: center; margin-top: 20px;">
+                            Reporte de Libros
+                        </h3>
+                        <!-- Tabla de datos -->
+                        <table class="table table-condensed" style="width: 100%; margin-top: 20px; border-collapse: collapse;">
                             <thead>
-                                <tr>
-                                    <th>Título</th>
-                                    <th>Autor</th>
-                                    <th>Fecha de Publicación</th>
-                                    <th>ISBN</th>
-                                    <th>Cantidad</th>
+                                <tr style="background-color: #f2f2f2; border: 1px solid #ddd;">
+                                    <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Nombre del Libro</th>
+                                    <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Autor</th>
+                                    <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Hermano(a)</th>
+                                    <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Fecha de Entrega</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><span t-field="doc.titulo"/></td>
-                                    <td><span t-field="doc.autor_id.name"/></td>
-                                    <td><span t-field="doc.fecha_publicacion"/></td>
-                                    <td><span t-field="doc.isbn"/></td>
-                                    <td><span t-field="doc.cantidad"/></td>
+                                <tr t-foreach="docs" t-as="doc" style="border: 1px solid #ddd;">
+                                    <td style="padding: 8px; border: 1px solid #ddd;" t-esc="doc.name or 'N/A'"/>
+                                    <td style="padding: 8px; border: 1px solid #ddd;" t-esc="doc.autor_id.name or 'N/A'"/>
+                                    <td style="padding: 8px; border: 1px solid #ddd;" t-esc="doc.hermano.nombre_hermano or 'N/A'"/>
+                                    <td style="padding: 8px; border: 1px solid #ddd;" t-esc="doc.fecha_entrega.strftime('%d/%m/%Y') if doc.fecha_entrega else 'N/A'"/>
                                 </tr>
                             </tbody>
                         </table>
+
+                        <!-- Requisitos del préstamo -->
+                        <p style="margin-top: 20px; font-size: 12px; text-align: justify;">
+                            <strong>Requisitos:</strong> De acuerdo con la entrega del libro, usted es responsable de su cuidado. Si daña el libro, deberá pagar la reparación correspondiente y, en caso de daño irreparable, se le solicitará pagar el costo total del libro.
+                        </p>
                     </div>
                 </t>
             </t>
-        </template>
-    </data>
+        </t>
+    </template>
 </odoo>
