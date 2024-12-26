@@ -32,7 +32,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr t-foreach="docs" t-as="doc" style="border: 1px solid #ddd;">
+                                <tr t-foreach="docs" t-as="doc" style="border: 1px solid #ffffff;">
                                     <td style="padding: 8px; border: 1px solid #ddd;" t-esc="doc.name or 'N/A'"/>
                                     <td style="padding: 8px; border: 1px solid #ddd;" t-esc="doc.autor_id.name or 'N/A'"/>
                                     <td style="padding: 8px; border: 1px solid #ddd;" t-esc="doc.hermano.nombre_hermano or 'N/A'"/>
