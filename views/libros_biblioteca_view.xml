@@ -126,5 +126,5 @@
         <field name="view_mode">tree,form,kanban</field>
     </record>
     <!--Menus-->
-    <menuitem name="Mi Biblioteca" id="libreria_menu" web_icon="modulo_libreria,static/description/book.png" sequence="10" action="libros_action"/>
+    <menuitem name="Mi Biblioteca" id="libreria_menu" web_icon="modulo_libreria_odoo16,static/description/book.png" sequence="10" action="libros_action"/>
 </odoo>
